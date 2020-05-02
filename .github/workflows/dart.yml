@@ -15,7 +15,11 @@ jobs:
       image:  cirrusci/flutter:latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
+    - name: Export PATH
+      run: export PATH="$PATH:/home/cirrus/sdks/flutter/bin"
+    - name: Running flutter doctor
+      run: flutter doctor
     - name: Install dependencies
       run: flutter pub get
     - name: Build web release
