@@ -19,11 +19,11 @@ jobs:
     - name: Export PATH
       run: export PATH="$PATH:/home/cirrus/sdks/flutter/bin"
     - name: Running flutter doctor
-      run: flutter doctor
+      run: sudo flutter doctor
     - name: Install dependencies
-      run: flutter pub get
+      run: sudo flutter pub get
     - name: Build web release
-      run: flutter build web --release
+      run: sudo flutter build web --release
     - name: GitHub Pages
       uses: crazy-max/ghaction-github-pages@v1.4.1
       with:
