@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
-      run: pub get
+      run: flutter pub get
     - name: Build web release
       run: flutter build web --release
     - name: GitHub Pages
