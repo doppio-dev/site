@@ -20,6 +20,8 @@ jobs:
 #       run: export PATH="$PATH:/home/cirrus/sdks/flutter/bin"
     - name: Running flutter doctor
       run: sudo /home/cirrus/sdks/flutter/bin/flutter doctor
+    - name: Enable web
+      run: sudo /home/cirrus/sdks/flutter/bin/flutter config --enable-web
     - name: Install dependencies
       run: sudo /home/cirrus/sdks/flutter/bin/flutter pub get
     - name: Build web release
