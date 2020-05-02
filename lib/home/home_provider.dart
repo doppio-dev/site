@@ -12,9 +12,8 @@ class HomeProvider {
   }
 
   void test(bool isError) {
-    if (isError == true){
+    if (isError == true) {
       throw Exception('manual error');
     }
   }
 }
-

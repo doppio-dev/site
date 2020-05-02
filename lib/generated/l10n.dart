@@ -10,9 +10,8 @@ import 'intl/messages_all.dart';
 
 class S {
   S();
-  
-  static const AppLocalizationDelegate delegate =
-    AppLocalizationDelegate();
+
+  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
     final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
@@ -21,13 +20,11 @@ class S {
       Intl.defaultLocale = localeName;
       return S();
     });
-  } 
+  }
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
-
-
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

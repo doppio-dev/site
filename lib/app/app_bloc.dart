@@ -10,9 +10,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     return _appBlocSingleton;
   }
   AppBloc._internal();
-  
+
   @override
-  Future<void> close() async{
+  Future<void> close() async {
     // dispose objects
     await _appBlocSingleton.close();
     await super.close();

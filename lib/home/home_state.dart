@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 abstract class HomeState extends Equatable {
-
   final List propss;
   HomeState([this.propss]);
 
@@ -11,7 +10,6 @@ abstract class HomeState extends Equatable {
 
 /// UnInitialized
 class UnHomeState extends HomeState {
-
   UnHomeState();
 
   @override
@@ -26,14 +24,13 @@ class InHomeState extends HomeState {
 
   @override
   String toString() => 'InHomeState $hello';
-
 }
 
 class ErrorHomeState extends HomeState {
   final String errorMessage;
 
-  ErrorHomeState(this.errorMessage): super([errorMessage]);
-  
+  ErrorHomeState(this.errorMessage) : super([errorMessage]);
+
   @override
   String toString() => 'ErrorHomeState';
 }

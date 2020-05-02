@@ -1,4 +1,3 @@
-
 import 'package:doppio_dev_site/generated/l10n.dart';
 
 class TranslateService {
@@ -12,5 +11,4 @@ class TranslateService {
     return _translateServiceSingleton;
   }
   TranslateService._internal();
-
 }
