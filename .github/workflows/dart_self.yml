@@ -2,113 +2,71 @@ name: Dart CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
-
-  build_number:
-    runs-on: self-hosted
-    steps:
-    - name: Generate build number
-      uses: einaregilsson/build-number@v2 
-      id: buildnumber
-      with:
-        token: ${{secrets.github_token}}        
-    - name: Print new build number
-      run: echo "Build number is $BUILD_NUMBER"
-    - name: Print GITHUB_RUN_NUMBER build number
-      run: echo "GITHUB_RUN_NUMBER is $GITHUB_RUN_NUMBER"
-      
-    - name: Upload build number
-      uses: actions/upload-artifact@v1
-      with:
-        name: BUILD_NUMBER
-        path: BUILD_NUMBER
-
   build_web:
-    needs: [build_number]
-
     runs-on: self-hosted
-    
-    steps:
-    - uses: actions/checkout@v2
-    - name: Running flutter doctor
-      run: flutter doctor
-    - name: Enable web
-      run: flutter config --enable-web
-    - name: Install dependencies
-      run: flutter pub get
-    - name: Download build number
-      uses: actions/download-artifact@v1
-      with:
-        name: BUILD_NUMBER
-    - name: Restore build number
-      id: buildnumber
-      uses: einaregilsson/build-number@v2 
 
-    - name: Change version
-      run: sh _bump.sh $GITHUB_REF ${{ steps.buildnumber.outputs.build_number }}
-    - name: Build web release
-      run: flutter build web --release
-    - name: GitHub Pages
-      uses: crazy-max/ghaction-github-pages@v1.4.1
-      with:
-        build_dir: build/web
-      env:
-        GITHUB_TOKEN: ${{ secrets.ci_token }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Running flutter doctor
+        run: flutter doctor
+      - name: Enable web
+        run: flutter config --enable-web
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Change version
+        run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_NUMBER"
+      - name: Build web release
+        run: flutter build web --release
+      - name: GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v1.4.1
+        with:
+          build_dir: build/web
+        env:
+          GITHUB_TOKEN: ${{ secrets.ci_token }}
 
   build_mac_os:
-    needs: [build_number]
-
     runs-on: self-hosted
-    
+
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Running flutter doctor
-      run: flutter doctor
-    - name: Enable macos
-      run: flutter config --enable-macos-desktop
-    - name: Install dependencies
-      run: flutter pub get
+      - name: Running flutter doctor
+        run: flutter doctor
+      - name: Enable macos
+        run: flutter config --enable-macos-desktop
+      - name: Install dependencies
+        run: flutter pub get
 
-    - name: Download build number
-      uses: actions/download-artifact@v1
-      with:
-        name: BUILD_NUMBER
-    - name: Restore build number
-      id: buildnumber
-      uses: einaregilsson/build-number@v2 
-    - name: Print GITHUB_RUN_NUMBER build number
-      run: echo "GITHUB_RUN_NUMBER is $GITHUB_RUN_NUMBER"
+      - name: Change version
+        run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_NUMBER"
+      - name: Get application version
+        run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)"
 
-    - name: Change version
-      run: sh _bump.sh $GITHUB_REF ${{ steps.buildnumber.outputs.build_number }}
-    - name: Get application version
-      run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)"
+      - name: Install create-dmg
+        run: brew install create-dmg
 
-    - name: Install create-dmg
-      run: brew install create-dmg
+      - name: Build macos release
+        run: flutter build macos --release
 
-    - name: Build macos release
-      run: flutter build macos --release
+      - name: Build dmg
+        run: sh _dmg.sh
 
-    - name: Build dmg
-      run: sh _dmg.sh
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: macos-dmg
-        path: release/macos/
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: macos-dmg
+          path: release/macos/
 
   distribute:
-    needs: [build_number, build_mac_os]
+    needs: [build_mac_os]
     runs-on: self-hosted
     steps:
-     
       - uses: actions/checkout@v1
 
       - name: Download artifact
@@ -117,22 +75,12 @@ jobs:
           name: macos-dmg
           path: release/macos/
 
-      - name: Download build number
-        uses: actions/download-artifact@v1
-        with:
-          name: BUILD_NUMBER
-      - name: Restore build number
-        id: buildnumber
-        uses: einaregilsson/build-number@v2 
-        
       - name: Change version
-        run: sh _bump.sh $GITHUB_REF ${{ steps.buildnumber.outputs.build_number }}
+        run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_NUMBER"
       - name: Get application version
         id: app_ver
         run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)"
-        
-      # https://opensource.com/article/19/5/python-3-default-mac
-      # pip install PyYAML
+
       - name: Read Configuration
         id: dist_config
         run: |
@@ -145,19 +93,19 @@ jobs:
         id: create-release
         uses: actions/create-release@v1
         env:
-            GITHUB_TOKEN: ${{ secrets.ci_token }}
+          GITHUB_TOKEN: ${{ secrets.ci_token }}
         with:
-            tag_name: v${{ steps.app_ver.outputs.app_ver  }} ${{ steps.dist_config.outputs.release_type }}
-            release_name: ${{ steps.dist_config.outputs.release_type }} v${{ steps.app_ver.outputs.app_ver  }} 
-            body: ${{ env.COMMIT_MESSAGE }}
-            draft: ${{ steps.dist_config.outputs.draft }}
-            prerelease: ${{ steps.dist_config.outputs.prerelease }}
+          tag_name: v${{ steps.app_ver.outputs.app_ver  }} ${{ steps.dist_config.outputs.release_type }}
+          release_name: ${{ steps.dist_config.outputs.release_type }} v${{ steps.app_ver.outputs.app_ver  }}
+          body: ${{ env.COMMIT_MESSAGE }}
+          draft: ${{ steps.dist_config.outputs.draft }}
+          prerelease: ${{ steps.dist_config.outputs.prerelease }}
 
       - name: Zip Build
         run: zip -r macos/build.zip release/macos/
 
       - name: Upload Release Asset
-        id: upload-release-asset 
+        id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.ci_token }}
