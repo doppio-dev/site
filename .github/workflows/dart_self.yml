@@ -65,7 +65,7 @@ jobs:
 
   distribute:
     needs: [build_mac_os]
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
 
@@ -84,6 +84,7 @@ jobs:
       - name: Read Configuration
         id: dist_config
         run: |
+          pip install PyYAML
           destinations=$(echo $GITHUB_REF | python3 .github/workflows/lib/read_dist_config.py "destinations")
           notify_testers=$(echo $GITHUB_REF | python3 .github/workflows/lib/read_dist_config.py "notify_testers")
           echo "::set-output name=destinations::"${destinations//\'}""
