@@ -36,6 +36,11 @@ dev_dependencies:
     sdk: flutter
   intl: 0.16.1
   pedantic: 1.9.0
+  pubspec_semver:
+    git:
+      url: https://github.com/gorniv/lastfm_dashboard
+      ref: master
+      path: packages/pubspec_semver
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

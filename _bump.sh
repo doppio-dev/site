@@ -9,6 +9,7 @@ then
 else
     echo 'no'
     version=$(sed -n '18p' pubspec.yaml)
+    echo $version
     newversion=$(echo $version | sed "s|version: \([0-9]*\)\.\([0-9]*\)\.\([0-9]*\)\+\([0-9]*\)|\1\.\2\.\3+$newNumber|g")
 fi
 echo 'version: '$newversion

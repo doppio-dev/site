@@ -21,6 +21,7 @@ jobs:
 
       - name: Change version
         run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_NUMBER
+
       - name: Build web release
         run: flutter build web --release
       - name: GitHub Pages
@@ -45,8 +46,6 @@ jobs:
 
       - name: Change version
         run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_NUMBER
-      - name: Get application version
-        run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)"
 
       - name: Install create-dmg
         run: brew install create-dmg
@@ -76,10 +75,11 @@ jobs:
           path: release/macos/
 
       - name: Change version
-        run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_NUMBER
+        run: sh _bump.sh $GITHUB_REF 
+        
       - name: Get application version
         id: app_ver
-        run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)"
+        run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)+($GITHUB_RUN_NUMBER)"
 
       - name: Read Configuration
         id: dist_config
@@ -113,5 +113,5 @@ jobs:
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
           asset_path: macos/build.zip
-          asset_name: macos-build
+          asset_name: macos-build.zip
           asset_content_type: application/zip
