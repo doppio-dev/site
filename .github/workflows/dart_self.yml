@@ -20,7 +20,7 @@ jobs:
         run: flutter pub get
 
       - name: Change version
-        run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_NUMBER"
+        run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_NUMBER
       - name: Build web release
         run: flutter build web --release
       - name: GitHub Pages
@@ -44,7 +44,7 @@ jobs:
         run: flutter pub get
 
       - name: Change version
-        run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_NUMBER"
+        run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_NUMBER
       - name: Get application version
         run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)"
 
@@ -76,7 +76,7 @@ jobs:
           path: release/macos/
 
       - name: Change version
-        run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_NUMBER"
+        run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_NUMBER
       - name: Get application version
         id: app_ver
         run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)"
