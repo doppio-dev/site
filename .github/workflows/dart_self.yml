@@ -74,9 +74,6 @@ jobs:
           name: macos-dmg
           path: release/macos/
 
-      - name: Change version
-        run: sh _bump.sh $GITHUB_REF 
-        
       - name: Get application version
         id: app_ver
         run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)+($GITHUB_RUN_NUMBER)"
