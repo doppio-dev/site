@@ -7,7 +7,24 @@ on:
     branches: [ master ]
 
 jobs:
+
+  build_number:
+    runs-on: self-hosted
+    steps:
+    - name: Generate build number
+      uses: einaregilsson/build-number@v2 
+      with:
+        token: ${{secrets.ci_token}}        
+    - name: Print new build number
+      run: echo "Build number is $BUILD_NUMBER"
+    - name: Upload build number
+      uses: actions/upload-artifact@v1
+      with:
+        name: BUILD_NUMBER
+        path: BUILD_NUMBER
+
   build_web:
+    needs: [build_number]
 
     runs-on: self-hosted
     
@@ -19,8 +36,16 @@ jobs:
       run: flutter config --enable-web
     - name: Install dependencies
       run: flutter pub get
+    - name: Download build number
+      uses: actions/download-artifact@v1
+      with:
+        name: BUILD_NUMBER
+    - name: Restore build number
+      id: buildnumber
+      uses: einaregilsson/build-number@v2 
+
     - name: Change version
-      run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_ID
+      run: sh _bump.sh $GITHUB_REF ${{ steps.buildnumber.outputs.build_number }}
     - name: Build web release
       run: flutter build web --release
     - name: GitHub Pages
@@ -31,6 +56,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.ci_token }}
 
   build_mac_os:
+    needs: [build_number]
 
     runs-on: self-hosted
     
@@ -43,15 +69,24 @@ jobs:
       run: flutter config --enable-macos-desktop
     - name: Install dependencies
       run: flutter pub get
+
+    - name: Download build number
+      uses: actions/download-artifact@v1
+      with:
+        name: BUILD_NUMBER
+    - name: Restore build number
+      id: buildnumber
+      uses: einaregilsson/build-number@v2 
+
     - name: Change version
-      run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_ID
+      run: sh _bump.sh $GITHUB_REF ${{ steps.buildnumber.outputs.build_number }}
     - name: Get application version
       run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)"
 
     - name: Install create-dmg
       run: brew install create-dmg
 
-    - name: Build web release
+    - name: Build macos release
       run: flutter build macos --release
 
     - name: Build dmg
@@ -64,7 +99,7 @@ jobs:
         path: release/macos/
 
   distribute:
-    needs: [build_mac_os]
+    needs: [build_number, build_mac_os]
     runs-on: self-hosted
     steps:
      
@@ -76,8 +111,16 @@ jobs:
           name: macos-dmg
           path: release/macos/
 
+      - name: Download build number
+        uses: actions/download-artifact@v1
+        with:
+          name: BUILD_NUMBER
+      - name: Restore build number
+        id: buildnumber
+        uses: einaregilsson/build-number@v2 
+        
       - name: Change version
-        run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_ID
+        run: sh _bump.sh $GITHUB_REF ${{ steps.buildnumber.outputs.build_number }}
       - name: Get application version
         id: app_ver
         run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)"
