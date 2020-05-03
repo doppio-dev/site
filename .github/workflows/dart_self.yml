@@ -18,6 +18,9 @@ jobs:
         token: ${{secrets.github_token}}        
     - name: Print new build number
       run: echo "Build number is $BUILD_NUMBER"
+    - name: Print GITHUB_RUN_NUMBER build number
+      run: echo "GITHUB_RUN_NUMBER is $GITHUB_RUN_NUMBER"
+      
     - name: Upload build number
       uses: actions/upload-artifact@v1
       with:
@@ -78,6 +81,8 @@ jobs:
     - name: Restore build number
       id: buildnumber
       uses: einaregilsson/build-number@v2 
+    - name: Print GITHUB_RUN_NUMBER build number
+      run: echo "GITHUB_RUN_NUMBER is $GITHUB_RUN_NUMBER"
 
     - name: Change version
       run: sh _bump.sh $GITHUB_REF ${{ steps.buildnumber.outputs.build_number }}
@@ -125,11 +130,12 @@ jobs:
       - name: Get application version
         id: app_ver
         run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)"
-
+        
+      # https://opensource.com/article/19/5/python-3-default-mac
+      # pip install PyYAML
       - name: Read Configuration
         id: dist_config
         run: |
-          pip install PyYAML
           destinations=$(echo $GITHUB_REF | python3 .github/workflows/lib/read_dist_config.py "destinations")
           notify_testers=$(echo $GITHUB_REF | python3 .github/workflows/lib/read_dist_config.py "notify_testers")
           echo "::set-output name=destinations::"${destinations//\'}""

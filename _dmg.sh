@@ -17,7 +17,6 @@ create-dmg \
   --sandbox-safe \
   "doppio_dev_site.dmg" \
   "build/macos/Build/Products/Release/Doppio.dev Site.app/"
-echo "sleep"
 echo "Finish create-dmg"
 ls
 mkdir release
