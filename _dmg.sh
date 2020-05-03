@@ -1,4 +1,4 @@
-test -f doppio_dev_site.dmg && rm doppio_dev_site.dmg
+# test -f doppio_dev_site.dmg && rm doppio_dev_site.dmg
 rm -R release/macos
 cp -Rf "build/macos/Build/Products/Release/doppio_dev_site.app" "build/macos/Build/Products/Release/Doppio.dev Site.app"
 echo "Start create-dmg"
@@ -17,7 +17,7 @@ create-dmg \
   "doppio_dev_site.dmg" \
   "build/macos/Build/Products/Release/Doppio.dev Site.app/"
 echo "sleep"
-sleep 60
+sleep 90
 echo "Finish create-dmg"
 ls
 mkdir release/macos

@@ -65,7 +65,7 @@ jobs:
 
     - name: Running flutter doctor
       run: flutter doctor
-    - name: Enable web
+    - name: Enable macos
       run: flutter config --enable-macos-desktop
     - name: Install dependencies
       run: flutter pub get
