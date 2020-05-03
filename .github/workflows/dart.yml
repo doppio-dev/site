@@ -1,34 +1,34 @@
-name: Dart CI
+# name: Dart CI
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+# on:
+#   push:
+#     branches: [ master ]
+#   pull_request:
+#     branches: [ master ]
+  
 
-jobs:
-  build:
+# jobs:
+#   build:
 
-    runs-on: ubuntu-latest
-
-    container:
-      image:  cirrusci/flutter:dev
+#     runs-on: ubuntu-latest
+#     container:
+#       image:  cirrusci/flutter:dev
       
-    steps:
-    - uses: actions/checkout@v1
-#     - name: Export PATH
-#       run: export PATH="$PATH:/home/cirrus/sdks/flutter/bin"
-    - name: Running flutter doctor
-      run: sudo /home/cirrus/sdks/flutter/bin/flutter doctor
-    - name: Enable web
-      run: sudo /home/cirrus/sdks/flutter/bin/flutter config --enable-web
-    - name: Install dependencies
-      run: sudo /home/cirrus/sdks/flutter/bin/flutter pub get
-    - name: Build web release
-      run: sudo /home/cirrus/sdks/flutter/bin/flutter build web --release
-    - name: GitHub Pages
-      uses: crazy-max/ghaction-github-pages@v1.4.1
-      with:
-        build_dir: build/web
-      env:
-        GITHUB_TOKEN: ${{ secrets.ci_token }}
+#     steps:
+#     - uses: actions/checkout@v1
+# #     - name: Export PATH
+# #       run: export PATH="$PATH:/home/cirrus/sdks/flutter/bin"
+#     - name: Running flutter doctor
+#       run: sudo /home/cirrus/sdks/flutter/bin/flutter doctor
+#     - name: Enable web
+#       run: sudo /home/cirrus/sdks/flutter/bin/flutter config --enable-web
+#     - name: Install dependencies
+#       run: sudo /home/cirrus/sdks/flutter/bin/flutter pub get
+#     - name: Build web release
+#       run: sudo /home/cirrus/sdks/flutter/bin/flutter build web --release
+#     - name: GitHub Pages
+#       uses: crazy-max/ghaction-github-pages@v1.4.1
+#       with:
+#         build_dir: build/web
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.ci_token }}
