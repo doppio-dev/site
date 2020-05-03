@@ -46,12 +46,11 @@ jobs:
     - name: Change version
       run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_ID
     - name: Get application version
-      id: app_ver
       run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)"
 
     - name: Install create-dmg
       run: brew install create-dmg
-      
+
     - name: Build web release
       run: flutter build macos --release
 
@@ -98,8 +97,8 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.ci_token }}
         with:
-            tag_name: v${{ app_ver.outputs.app_ver  }} ${{ steps.dist_config.outputs.release_type }}
-            release_name: ${{ steps.dist_config.outputs.release_type }} v${{ app_ver.outputs.app_ver  }} 
+            tag_name: v${{ steps.app_ver.outputs.app_ver  }} ${{ steps.dist_config.outputs.release_type }}
+            release_name: ${{ steps.dist_config.outputs.release_type }} v${{ steps.app_ver.outputs.app_ver  }} 
             body: ${{ env.COMMIT_MESSAGE }}
             draft: ${{ steps.dist_config.outputs.draft }}
             prerelease: ${{ steps.dist_config.outputs.prerelease }}
