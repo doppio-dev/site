@@ -1,6 +1,6 @@
 echo '$1 = ' $1
 echo '$2 = ' $2
-newNumber=$(($2 + 100))
+# newNumber=$(($2 + 100))
 echo $newNumber
 if  [[ $1 == release/* ]];
 then
