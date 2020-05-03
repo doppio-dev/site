@@ -65,6 +65,10 @@ jobs:
   distribute:
     needs: [build_mac_os]
     runs-on: ubuntu-latest
+
+    container:
+      image:  cirrusci/flutter:latest
+    
     steps:
       - uses: actions/checkout@v1
 
