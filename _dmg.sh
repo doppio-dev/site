@@ -14,10 +14,10 @@ create-dmg \
   --hide-extension "Doppio.dev Site.app" \
   --app-drop-link 540 250 \
   --hdiutil-quiet \
+  --sandbox-safe \
   "doppio_dev_site.dmg" \
   "build/macos/Build/Products/Release/Doppio.dev Site.app/"
 echo "sleep"
-sleep 90
 echo "Finish create-dmg"
 ls
 mkdir release/macos
