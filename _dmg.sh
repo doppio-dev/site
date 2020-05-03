@@ -20,6 +20,7 @@ create-dmg \
 echo "sleep"
 echo "Finish create-dmg"
 ls
+mkdir release
 mkdir release/macos
 cp -Rf doppio_dev_site.dmg release/macos/
 rm doppio_dev_site.dmg

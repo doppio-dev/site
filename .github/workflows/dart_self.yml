@@ -13,8 +13,9 @@ jobs:
     steps:
     - name: Generate build number
       uses: einaregilsson/build-number@v2 
+      id: buildnumber
       with:
-        token: ${{secrets.ci_token}}        
+        token: ${{secrets.github_token}}        
     - name: Print new build number
       run: echo "Build number is $BUILD_NUMBER"
     - name: Upload build number
