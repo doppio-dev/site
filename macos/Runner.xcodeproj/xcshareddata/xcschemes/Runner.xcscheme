@@ -17,7 +17,7 @@
                BlueprintIdentifier = "33CC10EC2044A3C60003C045"
                BuildableName = "Doppio.dev site.app"
                BlueprintName = "Runner"
-               ReferencedContainer = "container:Doppio.dev site.xcodeproj">
+               ReferencedContainer = "container:Runner.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,7 +33,7 @@
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
             BuildableName = "Doppio.dev site.app"
             BlueprintName = "Runner"
-            ReferencedContainer = "container:Doppio.dev site.xcodeproj">
+            ReferencedContainer = "container:Runner.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -44,7 +44,7 @@
                BlueprintIdentifier = "00380F9121DF178D00097171"
                BuildableName = "RunnerUITests.xctest"
                BlueprintName = "RunnerUITests"
-               ReferencedContainer = "container:Doppio.dev site.xcodeproj">
+               ReferencedContainer = "container:Runner.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -66,7 +66,7 @@
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
             BuildableName = "Doppio.dev site.app"
             BlueprintName = "Runner"
-            ReferencedContainer = "container:Doppio.dev site.xcodeproj">
+            ReferencedContainer = "container:Runner.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -83,7 +83,7 @@
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
             BuildableName = "Doppio.dev site.app"
             BlueprintName = "Runner"
-            ReferencedContainer = "container:Doppio.dev site.xcodeproj">
+            ReferencedContainer = "container:Runner.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
