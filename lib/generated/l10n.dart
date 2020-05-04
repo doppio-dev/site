@@ -10,8 +10,9 @@ import 'intl/messages_all.dart';
 
 class S {
   S();
-
-  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+  
+  static const AppLocalizationDelegate delegate =
+    AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
     final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
@@ -20,10 +21,37 @@ class S {
       Intl.defaultLocale = localeName;
       return S();
     });
-  }
+  } 
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
+  }
+
+  String get home_meows_desc {
+    return Intl.message(
+      'Player for Apple Music',
+      name: 'home_meows_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get home_ixn_desc {
+    return Intl.message(
+      'Editor for apps localizations',
+      name: 'home_ixn_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get error_reload {
+    return Intl.message(
+      'Reload',
+      name: 'error_reload',
+      desc: '',
+      args: [],
+    );
   }
 }
 
@@ -33,6 +61,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'ru', countryCode: 'RU'),
     ];
   }
 

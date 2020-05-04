@@ -1,4 +1,6 @@
 import 'package:doppio_dev_site/home/index.dart';
+import 'package:doppio_dev_site/service/context_service.dart';
+import 'package:doppio_dev_site/service/translate_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,9 +67,13 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
           ],
           supportedLocales: S.delegate.supportedLocales,
           theme: theme,
-          home: Scaffold(
-            body: HomePage(),
-          ),
+          home: StreamBuilder<Object>(
+              stream: null,
+              builder: (contextHome, snapshot) {
+                ContextService().buidlContext(contextHome);
+                TranslateService().update(contextHome);
+                return HomePage();
+              }),
           routes: _routes(),
         );
       },

@@ -1,3 +1,6 @@
+import 'package:doppio_dev_site/components/index.dart';
+import 'package:doppio_dev_site/service/context_service.dart';
+import 'package:doppio_dev_site/service/translate_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:doppio_dev_site/home/index.dart';
@@ -19,7 +22,8 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   HomeScreenState();
-
+  final PageController pageController = PageController(initialPage: 0, viewportFraction: 0.8, keepPage: true);
+  int _selectedIndex = 0;
   @override
   void initState() {
     super.initState();
@@ -56,7 +60,7 @@ class HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.only(top: 32.0),
                   child: RaisedButton(
                     color: Colors.blue,
-                    child: Text('reload'),
+                    child: Text(TranslateService().locale.error_reload),
                     onPressed: _load,
                   ),
                 ),
@@ -64,13 +68,44 @@ class HomeScreenState extends State<HomeScreen> {
             ));
           }
           if (currentState is InHomeState) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(currentState.hello),
-                ],
-              ),
+            var items = ['Meows.app', 'iXn'];
+            final pages = [
+              Meows(),
+              Ixn(),
+            ];
+            return Column(
+              children: [
+                Row(
+                    children: items
+                        .map((e) => GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _selectedIndex = items.indexOf(e);
+                                  pageController.animateToPage(_selectedIndex, curve: Curves.ease, duration: Duration(seconds: 1));
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  e,
+                                  style: ContextService().textTheme.headline6,
+                                ),
+                              ),
+                            ))
+                        .toList()),
+                Expanded(
+                  child: PageView(
+                      children: pages,
+                      scrollDirection: Axis.vertical,
+                      allowImplicitScrolling: true,
+                      controller: pageController,
+                      onPageChanged: (int i) {
+                        setState(() {
+                          _selectedIndex = i;
+                        });
+                      }),
+                ),
+              ],
             );
           }
           return Center(
