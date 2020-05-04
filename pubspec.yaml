@@ -39,7 +39,7 @@ dev_dependencies:
   doppio_utils_config:
     git:
       url: https://github.com/doppio-dev/utils
-      ref: master
+      ref: v0.0.4
       path: config
 
 # For information on the generic Dart part of this file, see the
