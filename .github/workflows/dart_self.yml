@@ -80,7 +80,7 @@ jobs:
 
       - name: Get application version
         id: app_ver
-        run: echo "::set-output name=app_ver::" "$(flutter pub run doppio_utils_config:get_ver)+($GITHUB_RUN_NUMBER)"
+        run: echo "::set-output name=app_ver::""$(flutter pub run doppio_utils_config:get_ver)+($GITHUB_RUN_NUMBER)"
       
       # https://github.com/ahdbilal/firstiosapp/blob/master/.github/workflows/build_distribute.yml
       - name: Read Configuration
@@ -99,8 +99,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ci_token }}
         with:
-          tag_name: v${{ steps.app_ver.outputs.app_ver  }} ${{ steps.dist_config.outputs.release_type }}
-          release_name: ${{ steps.dist_config.outputs.release_type }} v${{ steps.app_ver.outputs.app_ver  }}
+          tag_name: v_${{ steps.app_ver.outputs.app_ver  }}_${{ steps.dist_config.outputs.release_type }}
+          release_name: ${{ steps.dist_config.outputs.release_type }} v_${{ steps.app_ver.outputs.app_ver  }}
           body: ${{ env.COMMIT_MESSAGE }}
           draft: ${{ steps.dist_config.outputs.draft }}
           prerelease: ${{ steps.dist_config.outputs.prerelease }}
