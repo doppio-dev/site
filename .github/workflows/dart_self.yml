@@ -77,10 +77,10 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-        
+
       - name: Get application version
         id: app_ver
-        run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)+($GITHUB_RUN_NUMBER)"
+        run: echo "::set-output name=app_ver::" "$(flutter pub run doppio_utils_config:get_ver)+($GITHUB_RUN_NUMBER)"
       
       # https://github.com/ahdbilal/firstiosapp/blob/master/.github/workflows/build_distribute.yml
       - name: Read Configuration
