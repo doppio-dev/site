@@ -78,15 +78,17 @@ jobs:
       - name: Get application version
         id: app_ver
         run: echo "::set-output name=app_ver::" "$(flutter pub run pubspec_semver:get_ver)+($GITHUB_RUN_NUMBER)"
-
+      
+      # https://github.com/ahdbilal/firstiosapp/blob/master/.github/workflows/build_distribute.yml
       - name: Read Configuration
         id: dist_config
         run: |
-          pip install PyYAML
-          destinations=$(echo $GITHUB_REF | python3 .github/workflows/lib/read_dist_config.py "destinations")
-          notify_testers=$(echo $GITHUB_REF | python3 .github/workflows/lib/read_dist_config.py "notify_testers")
-          echo "::set-output name=destinations::"${destinations//\'}""
-          echo "::set-output name=notify_testers::"${notify_testers//\'}""
+          release_type=$(flutter pub run doppio_utils_config:get_config path=test/config.yml branch=master propertyName=release_type)
+          draft=$(flutter pub run doppio_utils_config:get_config path=test/config.yml branch=master propertyName=draft)
+          prerelease=$(flutter pub run doppio_utils_config:get_config path=test/config.yml branch=master propertyName=prerelease)
+          echo "::set-output name=release_type::"${release_type//\'}""
+          echo "::set-output name=draft::"${draft//\'}""
+          echo "::set-output name=prerelease::"${prerelease//\'}""
 
       - name: Create a Release
         id: create-release

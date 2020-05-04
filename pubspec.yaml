@@ -36,11 +36,11 @@ dev_dependencies:
     sdk: flutter
   intl: 0.16.1
   pedantic: 1.9.0
-  pubspec_semver:
+  doppio_utils_config:
     git:
-      url: https://github.com/gorniv/lastfm_dashboard
+      url: https://github.com/doppio-dev/utils
       ref: master
-      path: packages/pubspec_semver
+      path: config
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
