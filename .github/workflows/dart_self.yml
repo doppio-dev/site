@@ -83,9 +83,9 @@ jobs:
       - name: Read Configuration
         id: dist_config
         run: |
-          release_type=$(flutter pub run doppio_utils_config:get_config path=test/config.yml branch=master propertyName=release_type)
-          draft=$(flutter pub run doppio_utils_config:get_config path=test/config.yml branch=master propertyName=draft)
-          prerelease=$(flutter pub run doppio_utils_config:get_config path=test/config.yml branch=master propertyName=prerelease)
+          release_type=$(flutter pub run doppio_utils_config:get_config path=.distribute/config.yml branch=master propertyName=release_type)
+          draft=$(flutter pub run doppio_utils_config:get_config path=.distribute/config.yml branch=master propertyName=draft)
+          prerelease=$(flutter pub run doppio_utils_config:get_config path=.distribute/config.yml branch=master propertyName=prerelease)
           echo "::set-output name=release_type::"${release_type//\'}""
           echo "::set-output name=draft::"${draft//\'}""
           echo "::set-output name=prerelease::"${prerelease//\'}""
