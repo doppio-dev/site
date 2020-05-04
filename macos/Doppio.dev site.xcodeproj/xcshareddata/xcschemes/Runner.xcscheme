@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "33CC10EC2044A3C60003C045"
-               BuildableName = "doppio_dev_site.app"
+               BuildableName = "Doppio.dev site.app"
                BlueprintName = "Runner"
-               ReferencedContainer = "container:Runner.xcodeproj">
+               ReferencedContainer = "container:Doppio.dev site.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,6 +27,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "33CC10EC2044A3C60003C045"
+            BuildableName = "Doppio.dev site.app"
+            BlueprintName = "Runner"
+            ReferencedContainer = "container:Doppio.dev site.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -35,21 +44,10 @@
                BlueprintIdentifier = "00380F9121DF178D00097171"
                BuildableName = "RunnerUITests.xctest"
                BlueprintName = "RunnerUITests"
-               ReferencedContainer = "container:Runner.xcodeproj">
+               ReferencedContainer = "container:Doppio.dev site.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "33CC10EC2044A3C60003C045"
-            BuildableName = "doppio_dev_site.app"
-            BlueprintName = "Runner"
-            ReferencedContainer = "container:Runner.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -66,13 +64,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
-            BuildableName = "doppio_dev_site.app"
+            BuildableName = "Doppio.dev site.app"
             BlueprintName = "Runner"
-            ReferencedContainer = "container:Runner.xcodeproj">
+            ReferencedContainer = "container:Doppio.dev site.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -85,9 +81,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
-            BuildableName = "doppio_dev_site.app"
+            BuildableName = "Doppio.dev site.app"
             BlueprintName = "Runner"
-            ReferencedContainer = "container:Runner.xcodeproj">
+            ReferencedContainer = "container:Doppio.dev site.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
