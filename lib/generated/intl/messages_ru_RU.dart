@@ -20,8 +20,8 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru_RU';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function> {
-    "home_ixn_desc" : MessageLookupByLibrary.simpleMessage("Редактор для локализации приложений"),
-    "home_meows_desc" : MessageLookupByLibrary.simpleMessage("Плеер для Apple Music")
-  };
+  static _notInlinedMessages(_) => <String, Function>{
+        "home_ixn_desc": MessageLookupByLibrary.simpleMessage("Редактор для локализации приложений"),
+        "home_meows_desc": MessageLookupByLibrary.simpleMessage("Плеер для Apple Music")
+      };
 }
