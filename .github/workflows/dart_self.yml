@@ -24,6 +24,16 @@ jobs:
 
       - name: Build web release
         run: flutter build web --release
+        
+      - name: Use random for fix cache
+        run: |
+          ran=$RANDOM
+          echo $ran
+          mv -i build/web/main.dart.js build/web/main.$ran.dart.js
+          mv -i build/web/main.dart.js.map build/web/main.$ran.dart.js.map
+          sed -i '' 's/main\.dart/main\.'$ran'\.dart/g' ./build/web/index.html
+          sed -i '' 's/main\.dart/main\.'$ran'\.dart/g' ./build/web/flutter_service_worker.js
+
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v1.4.1
         with:
