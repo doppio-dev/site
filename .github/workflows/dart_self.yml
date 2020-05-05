@@ -24,7 +24,7 @@ jobs:
 
       - name: Build web release
         run: flutter build web --release
-        
+
       - name: Use random for fix cache
         run: |
           ran=$RANDOM
@@ -38,6 +38,7 @@ jobs:
         uses: crazy-max/ghaction-github-pages@v1.4.1
         with:
           build_dir: build/web
+          fqdn: doppio.dev
         env:
           GITHUB_TOKEN: ${{ secrets.ci_token }}
 
