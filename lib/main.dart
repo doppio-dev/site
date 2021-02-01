@@ -22,7 +22,7 @@ Future<void> init({bool ensureInitialized = true}) async {
     if (ensureInitialized == true) {
       WidgetsFlutterBinding.ensureInitialized();
     }
-    BlocSupervisor.delegate = SimpleBlocDelegate();
+    Bloc.observer = SimpleBlocDelegate();
   } catch (error, stackTrace) {
     log('$error', name: 'Main', error: '$error', stackTrace: stackTrace);
   }

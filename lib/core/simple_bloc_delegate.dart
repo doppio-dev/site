@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:doppio_dev_site/core/logger.dart' as developer;
 
-class SimpleBlocDelegate extends BlocDelegate {
+class SimpleBlocDelegate extends BlocObserver {
   @override
   void onTransition(Bloc<dynamic, dynamic> bloc, Transition<dynamic, dynamic> transition) {
     super.onTransition(bloc, transition);
@@ -15,8 +15,8 @@ class SimpleBlocDelegate extends BlocDelegate {
   }
 
   @override
-  void onError(Bloc<dynamic, dynamic> bloc, Object error, StackTrace stackTrace) {
-    developer.log('$error', name: bloc.runtimeType.toString(), error: error, stackTrace: stackTrace);
-    super.onError(bloc, error, stackTrace);
+  void onError(Cubit cubit, Object error, StackTrace stackTrace) {
+    developer.log('$error', name: cubit.runtimeType.toString(), error: error, stackTrace: stackTrace);
+    super.onError(cubit, error, stackTrace);
   }
 }

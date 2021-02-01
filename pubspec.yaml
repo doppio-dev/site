@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.1.0+1
+version: 0.2.0+1
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -23,27 +23,27 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: 4.0.0
-  equatable: 1.1.1
+  flutter_bloc: 6.1.1
+  equatable: 1.2.5
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
+  cupertino_icons: 1.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: 0.16.1
-  pedantic: 1.9.0
+  intl: 0.17.0-nullsafety.2
+  pedantic: 1.9.2
   doppio_utils_config:
     git:
       url: https://github.com/doppio-dev/utils
       ref: v0.0.4
       path: config
-  url_launcher: 5.4.5
-  url_launcher_macos: 0.0.1+5
-  url_launcher_web: 0.1.1+2
+  url_launcher: 5.7.10
+  url_launcher_macos: 0.0.1+9
+  url_launcher_web: 0.1.5+3
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.

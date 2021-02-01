@@ -5,8 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:doppio_dev_site/home/index.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  @override
-  HomeState get initialState => UnHomeState();
+  HomeBloc() : super(UnHomeState());
 
   @override
   Stream<HomeState> mapEventToState(

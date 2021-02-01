@@ -12,7 +12,7 @@ class Ixn extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        final url = 'https://github.com/doppio-dev/ixn';
+        final url = 'https://ixn.doppio.dev';
         if (await canLaunch(url)) {
           await launch(url);
         }
@@ -59,7 +59,7 @@ class Ixn extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'iXn (soon)',
+                      'iXn',
                       style: ContextService().textTheme.headline3,
                     ),
                     Text(

@@ -43,7 +43,7 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppBloc, AppState>(
-      bloc: _appBloc,
+      cubit: _appBloc,
       builder: (
         BuildContext context,
         AppState currentState,

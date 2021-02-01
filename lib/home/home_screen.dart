@@ -40,7 +40,7 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
-        bloc: widget._homeBloc,
+        cubit: widget._homeBloc,
         builder: (
           BuildContext context,
           HomeState currentState,
