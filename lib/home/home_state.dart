@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 abstract class HomeState extends Equatable {
-  final List propss;
+  final List? propss;
   HomeState([this.propss]);
 
   @override
-  List<Object> get props => (propss ?? []);
+  List<Object> get props => (propss as List<Object>? ?? []);
 }
 
 /// UnInitialized
@@ -27,7 +27,7 @@ class InHomeState extends HomeState {
 }
 
 class ErrorHomeState extends HomeState {
-  final String errorMessage;
+  final String? errorMessage;
 
   ErrorHomeState(this.errorMessage) : super([errorMessage]);
 

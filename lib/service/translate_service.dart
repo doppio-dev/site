@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 class TranslateService {
   static final _translateServiceSingleton = TranslateService._internal();
 
-  S locale;
+  S? locale;
 
   factory TranslateService() {
     return _translateServiceSingleton;

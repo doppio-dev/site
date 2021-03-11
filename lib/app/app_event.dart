@@ -7,25 +7,25 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class AppEvent {
-  Stream<AppState> applyAsync({AppState currentState, AppBloc bloc});
+  Stream<AppState> applyAsync({AppState? currentState, AppBloc? bloc});
 }
 
 class UnAppEvent extends AppEvent {
   @override
-  Stream<AppState> applyAsync({AppState currentState, AppBloc bloc}) async* {
+  Stream<AppState> applyAsync({AppState? currentState, AppBloc? bloc}) async* {
     yield UnAppState();
   }
 }
 
 class LoadAppEvent extends AppEvent {
   @override
-  Stream<AppState> applyAsync({AppState currentState, AppBloc bloc}) async* {
+  Stream<AppState> applyAsync({AppState? currentState, AppBloc? bloc}) async* {
     try {
       yield UnAppState();
       yield InAppState(0);
     } catch (_, stackTrace) {
       developer.log('$_', name: 'LoadAppEvent', error: _, stackTrace: stackTrace);
-      yield ErrorAppState(errorMessage: _?.toString());
+      yield ErrorAppState(errorMessage: _.toString());
     }
   }
 }
@@ -37,8 +37,8 @@ class ChangeThemeAppEvent extends AppEvent {
   ChangeThemeAppEvent();
 
   @override
-  Stream<AppState> applyAsync({AppState currentState, AppBloc bloc}) async* {
-    yield currentState.getNewVersion();
+  Stream<AppState> applyAsync({AppState? currentState, AppBloc? bloc}) async* {
+    yield currentState!.getNewVersion();
   }
 }
 
@@ -50,7 +50,7 @@ class ChangeLocaleAppEvent extends AppEvent {
   ChangeLocaleAppEvent(this.locale);
 
   @override
-  Stream<AppState> applyAsync({AppState currentState, AppBloc bloc}) async* {
-    yield currentState.getNewVersion();
+  Stream<AppState> applyAsync({AppState? currentState, AppBloc? bloc}) async* {
+    yield currentState!.getNewVersion();
   }
 }

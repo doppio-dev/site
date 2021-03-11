@@ -1,11 +1,10 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/widgets.dart';
 
 abstract class AppState extends Equatable {
   /// notify change state without deep clone state
   final int version;
 
-  final List propss;
+  final List? propss;
   AppState(this.version, [this.propss]);
 
   /// Copy object for use in action
@@ -15,7 +14,7 @@ abstract class AppState extends Equatable {
   AppState getNewVersion();
 
   @override
-  List<Object> get props => ([version, ...propss ?? []]);
+  List<Object> get props => ([version, ...propss as Iterable<Object>? ?? []]);
 }
 
 /// UnInitialized
@@ -57,7 +56,7 @@ class InAppState extends AppState {
 class ErrorAppState extends AppState {
   final String errorMessage;
 
-  ErrorAppState({int version = 0, @required this.errorMessage}) : super(version, [errorMessage]);
+  ErrorAppState({int version = 0, required this.errorMessage}) : super(version, [errorMessage]);
 
   @override
   String toString() => 'ErrorAppState';

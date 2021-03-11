@@ -7,8 +7,8 @@ import 'package:doppio_dev_site/home/index.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
-    Key key,
-    @required HomeBloc homeBloc,
+    Key? key,
+    required HomeBloc homeBloc,
   })  : _homeBloc = homeBloc,
         super(key: key);
 
@@ -40,7 +40,7 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
-        cubit: widget._homeBloc,
+        bloc: widget._homeBloc,
         builder: (
           BuildContext context,
           HomeState currentState,
@@ -67,7 +67,7 @@ class HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     onPressed: _load,
-                    child: Text(TranslateService().locale.error_reload),
+                    child: Text(TranslateService().locale!.error_reload),
                   ),
                 ),
               ],

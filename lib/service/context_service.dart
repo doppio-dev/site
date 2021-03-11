@@ -4,10 +4,10 @@ import 'package:flutter/widgets.dart';
 class ContextService {
   static final _contextServiceSingleton = ContextService._internal();
 
-  Size deviceSize;
+  Size? deviceSize;
 
-  TextTheme textTheme;
-  ThemeData theme;
+  late TextTheme textTheme;
+  late ThemeData theme;
   factory ContextService() {
     return _contextServiceSingleton;
   }

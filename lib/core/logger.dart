@@ -6,14 +6,14 @@ void logBuild(String message, String name) {
 }
 
 void log(
-  String message, {
-  DateTime time,
-  int sequenceNumber,
+  String?/*!*/ message, {
+  DateTime? time,
+  int? sequenceNumber,
   int level = 0,
   String name = '',
   dynamic error,
-  StackTrace stackTrace,
-  bool render,
+  StackTrace? stackTrace,
+  bool? render,
 }) {
   if (render == true) {
     return;

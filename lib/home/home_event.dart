@@ -11,20 +11,20 @@ abstract class HomeEvent {
 
 class UnHomeEvent extends HomeEvent {
   @override
-  Stream<HomeState> applyAsync({HomeState currentState, HomeBloc bloc}) async* {
+  Stream<HomeState> applyAsync({HomeState? currentState, HomeBloc? bloc}) async* {
     yield UnHomeState();
   }
 }
 
 class LoadHomeEvent extends HomeEvent {
   @override
-  Stream<HomeState> applyAsync({HomeState currentState, HomeBloc bloc}) async* {
+  Stream<HomeState> applyAsync({HomeState? currentState, HomeBloc? bloc}) async* {
     try {
       yield UnHomeState();
       yield InHomeState('Hello world');
     } catch (_, stackTrace) {
       developer.log('$_', name: 'LoadHomeEvent', error: _, stackTrace: stackTrace);
-      yield ErrorHomeState(_?.toString());
+      yield ErrorHomeState(_.toString());
     }
   }
 }

@@ -23,7 +23,7 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
     if (_appBloc.state is UnAppState) {
       _load();
     }
@@ -31,7 +31,7 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
     super.dispose();
   }
 
@@ -43,12 +43,12 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppBloc, AppState>(
-      cubit: _appBloc,
+      bloc: _appBloc,
       builder: (
         BuildContext context,
         AppState currentState,
       ) {
-        final brightness = WidgetsBinding.instance.window.platformBrightness;
+        final brightness = WidgetsBinding.instance!.window.platformBrightness;
         final theme = ThemeData(
           primaryColor: brightness == Brightness.dark ? Colors.black : Colors.white,
           accentColor: brightness == Brightness.dark ? Colors.white : Colors.black,

@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Meows extends StatelessWidget {
   const Meows({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -66,7 +66,7 @@ class Meows extends StatelessWidget {
                       style: ContextService().textTheme.headline3,
                     ),
                     Text(
-                      TranslateService().locale.home_meows_desc,
+                      TranslateService().locale!.home_meows_desc,
                       style: ContextService().textTheme.headline6,
                     ),
                   ],

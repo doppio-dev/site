@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Ixn extends StatelessWidget {
   const Ixn({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -63,7 +63,7 @@ class Ixn extends StatelessWidget {
                       style: ContextService().textTheme.headline3,
                     ),
                     Text(
-                      TranslateService().locale.home_ixn_desc,
+                      TranslateService().locale!.home_ixn_desc,
                       style: ContextService().textTheme.headline6,
                     ),
                   ],
