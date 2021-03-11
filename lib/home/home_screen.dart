@@ -58,10 +58,16 @@ class HomeScreenState extends State<HomeScreen> {
                 Text(currentState.errorMessage ?? 'Error'),
                 Padding(
                   padding: const EdgeInsets.only(top: 32.0),
-                  child: RaisedButton(
-                    color: Colors.blue,
-                    child: Text(TranslateService().locale.error_reload),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                          return Colors.blue;
+                        },
+                      ),
+                    ),
                     onPressed: _load,
+                    child: Text(TranslateService().locale.error_reload),
                   ),
                 ),
               ],
@@ -95,15 +101,16 @@ class HomeScreenState extends State<HomeScreen> {
                         .toList()),
                 Expanded(
                   child: PageView(
-                      children: pages,
-                      scrollDirection: Axis.vertical,
-                      allowImplicitScrolling: true,
-                      controller: pageController,
-                      onPageChanged: (int i) {
-                        setState(() {
-                          _selectedIndex = i;
-                        });
-                      }),
+                    scrollDirection: Axis.vertical,
+                    allowImplicitScrolling: true,
+                    controller: pageController,
+                    onPageChanged: (int i) {
+                      setState(() {
+                        _selectedIndex = i;
+                      });
+                    },
+                    children: pages,
+                  ),
                 ),
               ],
             );

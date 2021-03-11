@@ -20,3 +20,5 @@ doc/api/
 *.js.deps
 *.js.map
 release/
+.flutter-plugins
+.flutter-plugins-dependencies
