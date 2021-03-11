@@ -12,10 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Running flutter doctor
-        run: flutter doctor
-      - name: Enable web
-        run: flutter config --enable-web
       - name: Install dependencies
         run: flutter pub get
 
@@ -48,18 +44,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Running flutter doctor
-        run: flutter doctor
-      - name: Enable macos
-        run: flutter config --enable-macos-desktop
       - name: Install dependencies
         run: flutter pub get
 
       - name: Change version
         run: sh _bump.sh $GITHUB_REF $GITHUB_RUN_NUMBER
 
-      - name: Install create-dmg
-        run: brew install create-dmg
+      # - name: Install create-dmg
+      #   run: brew install create-dmg
 
       - name: Build macos release
         run: flutter build macos --release
