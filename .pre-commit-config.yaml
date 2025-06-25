@@ -2,7 +2,7 @@
   hooks:
     - id: flutter-format
       name: format
-      entry: dartfmt -l 150 -w .
+      entry: dart format -l 150 .
       language: system
       files: lib/* # Only format source files
       exclude: lib/src/utils.dart # Exclude utils

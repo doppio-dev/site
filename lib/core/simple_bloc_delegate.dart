@@ -15,7 +15,7 @@ class SimpleBlocDelegate extends BlocObserver {
   }
 
   @override
-  void onError(Bloc bloc, Object error, StackTrace stackTrace) {
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     developer.log('$error', name: bloc.runtimeType.toString(), error: error, stackTrace: stackTrace);
     super.onError(bloc, error, stackTrace);
   }

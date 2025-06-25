@@ -6,7 +6,7 @@ void logBuild(String message, String name) {
 }
 
 void log(
-  String?/*!*/ message, {
+  String? /*!*/ message, {
   DateTime? time,
   int? sequenceNumber,
   int level = 0,

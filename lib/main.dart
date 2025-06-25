@@ -10,11 +10,14 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>(debugLabel: '
 
 Future<void> main() async {
   await init();
-  await runZonedGuarded<Future<Null>>(() async {
-    runApp(AppPage());
-  }, (Object error, StackTrace stackTrace) async {
-    log('$error', name: 'Main', error: error, stackTrace: stackTrace);
-  });
+  await runZonedGuarded<Future<Null>>(
+    () async {
+      runApp(AppPage());
+    },
+    (Object error, StackTrace stackTrace) async {
+      log('$error', name: 'Main', error: error, stackTrace: stackTrace);
+    },
+  );
 }
 
 Future<void> init({bool ensureInitialized = true}) async {

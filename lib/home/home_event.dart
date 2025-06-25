@@ -22,9 +22,9 @@ class LoadHomeEvent extends HomeEvent {
     try {
       yield UnHomeState();
       yield InHomeState('Hello world');
-    } catch (_, stackTrace) {
-      developer.log('$_', name: 'LoadHomeEvent', error: _, stackTrace: stackTrace);
-      yield ErrorHomeState(_.toString());
+    } catch (e, stackTrace) {
+      developer.log('$e', name: 'LoadHomeEvent', error: e, stackTrace: stackTrace);
+      yield ErrorHomeState(e.toString());
     }
   }
 }

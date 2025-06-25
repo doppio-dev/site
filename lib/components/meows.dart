@@ -4,9 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Meows extends StatelessWidget {
-  const Meows({
-    Key? key,
-  }) : super(key: key);
+  const Meows({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,7 @@ class Meows extends StatelessWidget {
               Color.fromARGB(255, 232, 95, 141),
               Color.fromARGB(255, 163, 115, 214),
               Color.fromARGB(255, 112, 154, 240),
-              Color.fromARGB(255, 48, 222, 249)
+              Color.fromARGB(255, 48, 222, 249),
               // Colors.indigo[600],
               // Colors.indigo[400],
             ],
@@ -50,25 +48,15 @@ class Meows extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(8)),
-                    child: Image.asset(
-                      'assets/images/meows.png',
-                      height: 100,
-                      width: 100,
-                    ),
+                    child: Image.asset('assets/images/meows.png', height: 100, width: 100),
                   ),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Meows.app',
-                      style: ContextService().textTheme.headline3,
-                    ),
-                    Text(
-                      TranslateService().locale!.home_meows_desc,
-                      style: ContextService().textTheme.headline6,
-                    ),
+                    Text('Meows.app', style: ContextService().textTheme.headlineSmall),
+                    Text(TranslateService().locale!.home_meows_desc, style: ContextService().textTheme.titleLarge),
                   ],
                 ),
               ],

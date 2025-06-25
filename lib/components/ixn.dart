@@ -4,9 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Ixn extends StatelessWidget {
-  const Ixn({
-    Key? key,
-  }) : super(key: key);
+  const Ixn({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,25 +45,15 @@ class Ixn extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(8)),
-                    child: Image.asset(
-                      'assets/images/ixn.png',
-                      height: 100,
-                      width: 100,
-                    ),
+                    child: Image.asset('assets/images/ixn.png', height: 100, width: 100),
                   ),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'iXn',
-                      style: ContextService().textTheme.headline3,
-                    ),
-                    Text(
-                      TranslateService().locale!.home_ixn_desc,
-                      style: ContextService().textTheme.headline6,
-                    ),
+                    Text('iXn', style: ContextService().textTheme.headlineMedium),
+                    Text(TranslateService().locale!.home_ixn_desc, style: ContextService().textTheme.titleLarge),
                   ],
                 ),
               ],

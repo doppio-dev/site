@@ -20,9 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Doppio.dev'),
-      ),
+      appBar: AppBar(title: Text('Doppio.dev')),
       body: HomeScreen(homeBloc: _homeBloc),
     );
   }

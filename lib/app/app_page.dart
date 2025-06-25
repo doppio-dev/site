@@ -44,15 +44,13 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return BlocBuilder<AppBloc, AppState>(
       bloc: _appBloc,
-      builder: (
-        BuildContext context,
-        AppState currentState,
-      ) {
+      builder: (BuildContext context, AppState currentState) {
         final brightness = WidgetsBinding.instance!.window.platformBrightness;
         final theme = ThemeData(
           primaryColor: brightness == Brightness.dark ? Colors.black : Colors.white,
-          accentColor: brightness == Brightness.dark ? Colors.white : Colors.black,
-          brightness: brightness == Brightness.dark ? Brightness.dark : Brightness.light,
+          colorScheme: ColorScheme.fromSwatch(
+            brightness: brightness,
+          ).copyWith(secondary: brightness == Brightness.dark ? Colors.white : Colors.black),
           // fontFamily: 'OpenSans'
         );
         return MaterialApp(
@@ -68,12 +66,13 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
           supportedLocales: S.delegate.supportedLocales,
           theme: theme,
           home: StreamBuilder<Object>(
-              stream: null,
-              builder: (contextHome, snapshot) {
-                ContextService().buidlContext(contextHome);
-                TranslateService().update(contextHome);
-                return HomePage();
-              }),
+            stream: null,
+            builder: (contextHome, snapshot) {
+              ContextService().buidlContext(contextHome);
+              TranslateService().update(contextHome);
+              return HomePage();
+            },
+          ),
           routes: _routes(),
         );
       },
@@ -81,10 +80,7 @@ class _AppPageState extends State<AppPage> with WidgetsBindingObserver {
   }
 
   Map<String, WidgetBuilder> _routes() {
-    return <String, WidgetBuilder>{
-      '': (BuildContext context) => AppPage(),
-      HomePage.routeName: (BuildContext context) => HomePage(),
-    };
+    return <String, WidgetBuilder>{'': (BuildContext context) => AppPage(), HomePage.routeName: (BuildContext context) => HomePage()};
   }
 
   void _load() {

@@ -23,9 +23,9 @@ class LoadAppEvent extends AppEvent {
     try {
       yield UnAppState();
       yield InAppState(0);
-    } catch (_, stackTrace) {
-      developer.log('$_', name: 'LoadAppEvent', error: _, stackTrace: stackTrace);
-      yield ErrorAppState(errorMessage: _.toString());
+    } catch (e, stackTrace) {
+      developer.log('$e', name: 'LoadAppEvent', error: e, stackTrace: stackTrace);
+      yield ErrorAppState(errorMessage: e.toString());
     }
   }
 }
