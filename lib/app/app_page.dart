@@ -1,14 +1,13 @@
+import 'package:doppio_dev_site/app/index.dart';
+import 'package:doppio_dev_site/generated/l10n.dart';
 import 'package:doppio_dev_site/home/index.dart';
+import 'package:doppio_dev_site/main.dart';
 import 'package:doppio_dev_site/service/context_service.dart';
 import 'package:doppio_dev_site/service/translate_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:doppio_dev_site/app/index.dart';
-import 'package:doppio_dev_site/generated/l10n.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:doppio_dev_site/main.dart';
 
 class AppPage extends StatefulWidget {
   static const String routeName = '/app';
