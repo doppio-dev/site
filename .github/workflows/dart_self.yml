@@ -34,8 +34,8 @@ jobs:
           ran=$RANDOM
           echo $ran
           mv -i build/web/main.dart.js build/web/main.$ran.dart.js
-          sed -i '' 's|main\.dart\.js\?v\=[0-9]*|main\.'$ran'\.dart\.js|g' ./build/web/index.html ./build/web/flutter_service_worker.js
-          sed -i '' 's|main\.dart\.js|main\.'$ran'\.dart\.js|g' ./build/web/index.html ./build/web/flutter_service_worker.js
+          sed -i '' 's|main\.dart\.js\?v\=[0-9]*|main\.'$ran'\.dart\.js|g' ./build/web/index.html ./build/web/flutter_service_worker.js ./build/web/flutter_bootstrap.js
+          sed -i '' 's|"main\.dart\.js"|"main\.'$ran'\.dart\.js"|g' ./build/web/flutter_bootstrap.js
 
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v4
