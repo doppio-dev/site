@@ -5,6 +5,7 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+  workflow_dispatch:
 
 jobs:
   build_web:
@@ -42,10 +43,11 @@ jobs:
           build_dir: build/web
           fqdn: doppio.dev
         env:
-          GITHUB_TOKEN: ${{ secrets.ci_token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build_mac_os:
     runs-on: self-hosted
+    if: github.event_name == 'workflow_dispatch'
 
     steps:
       - uses: actions/checkout@v4
@@ -80,6 +82,7 @@ jobs:
   distribute:
     needs: [build_mac_os]
     runs-on: self-hosted
+    if: github.event_name == 'workflow_dispatch'
 
     steps:
       - uses: actions/checkout@v4
