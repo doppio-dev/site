@@ -23,3 +23,4 @@ release/
 .flutter-plugins
 .flutter-plugins-dependencies
 .flutter-plugins-dependencies
+actions-runner/
